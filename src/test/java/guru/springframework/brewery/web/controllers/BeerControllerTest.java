@@ -81,7 +81,7 @@ class BeerControllerTest {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
         given(beerService.findBeerById(any())).willReturn(validBeer);
 
-        MvcResult result = mockMvc.perform(get("/api/v1/beer/" + validBeer.getId()))
+        mockMvc.perform(get("/api/v1/beer/" + validBeer.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.id", is(validBeer.getId().toString())))
